@@ -1,0 +1,11 @@
+@font-face {
+  font-family: 'Alegreya Sans SC';
+  src: url('assets/fonts/AlegreyaSansSC-Medium.ttf') format('woff');
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Advent Pro';
+  src: url('assets/fonts/AdventPro_Expanded-Medium.ttf') format('woff');
+  font-style: normal;
+}
