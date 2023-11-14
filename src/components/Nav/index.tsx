@@ -1,5 +1,6 @@
 import logo from 'assets/icons/logo.svg';
 import profile from 'assets/icons/profile.svg';
+import media from 'constants/media';
 import { navItems } from 'constants/nav';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -33,14 +34,23 @@ const StyledWrapper = styled.nav`
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
+  width: 100%;
   padding: 12px 0px;
   background-color: ${theme.color.darkBlack};
   color: ${theme.color.navText};
+
+  ${media.mobile} {
+    font-size: 0.6rem;
+  }
 `;
 
 const StyledLogoWrapper = styled.div`
   position: relative;
   width: 60px;
+
+  ${media.mobile} {
+    width: 30px;
+  }
 `;
 
 const StyledLogo = styled.img`
@@ -59,10 +69,14 @@ const StyledInformWrapper = styled.div`
   align-items: center;
   font-family: 'Advent Pro';
   font-weight: ${theme.fontWeight.light};
-  gap: 10px;
+  gap: 9px;
   cursor: pointer;
 `;
 
 const StyledProfile = styled.img`
   width: 30px;
+
+  ${media.mobile} {
+    width: 15px;
+  }
 `;
