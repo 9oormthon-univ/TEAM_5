@@ -1,13 +1,13 @@
-import { createGlobalStyle } from "styled-components";
-import theme from "styles/theme";
+import { createGlobalStyle } from 'styled-components';
+import theme from 'styles/theme';
 
 const GlobalStyle = createGlobalStyle`
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "NotoSansKR";
-    font-weight: ${theme.fontWeight.normal};
+    font-family: "Alegreya Sans SC";
+    font-weight: ${theme.fontWeight.medium};
   }
 
   html,
