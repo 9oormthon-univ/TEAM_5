@@ -10,7 +10,9 @@ function Nav() {
   return (
     <StyledWrapper>
       <StyledLogoWrapper>
-        <StyledLogo src={logo} alt="로고" />
+        <Link to="/">
+          <StyledLogo src={logo} alt="로고" />
+        </Link>
       </StyledLogoWrapper>
 
       {navItems.map((item, index) => (
