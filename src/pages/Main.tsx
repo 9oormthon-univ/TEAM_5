@@ -11,7 +11,7 @@ function Main() {
     <>
       <StyledWrapper>
         <StyledBgWrapper>
-          <StyledBg src={darkBg} alt="밤 배경" />
+          <StyledBg src={darkBg} alt="밤 배경" loading="lazy" />
         </StyledBgWrapper>
 
         <StyledItemWrapper>
@@ -26,7 +26,7 @@ function Main() {
 
       <StyledBookListWrapper>
         <StyledStarWrapper>
-          <StyledStar src={mainStar} alt="별" />
+          <StyledStar src={mainStar} alt="별" loading="lazy" />
         </StyledStarWrapper>
         <StyledBookWrapper>
           <StyledAgoraName>무슨 무슨 아고라</StyledAgoraName>
@@ -40,8 +40,7 @@ function Main() {
 export default Main;
 
 const StyledWrapper = styled.main`
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
   overflow: hidden;
 `;
 
