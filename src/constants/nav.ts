@@ -21,6 +21,6 @@ export const navItems = [
   },
   {
     title: '구름 꾸미기',
-    link: '/',
+    link: '/goorm',
   },
 ];
