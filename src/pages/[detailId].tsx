@@ -3,8 +3,31 @@ import theme from 'styles/theme';
 import detailDarkBg from 'assets/images/detailDarkBg.jpg';
 import detailStar from 'assets/icons/detailStar.svg';
 import primary from 'assets/images/primary.png';
+import { useEffect } from 'react';
+import axios from 'axios';
+import Info from 'components/Info/Info';
 
+
+interface Props {   //사용자가 선택한 책 정보 => 통신할 때 필요
+  bookId: number;
+  bookName: string;
+}
+
+//{bookId, bookName} : Props
 function Detail() {
+
+  // useEffect(() => {
+  //   async function getData() {
+  //     await axios.get("/api/독서모임책정보")
+  //       .then((response) => {
+  //
+  //       })
+  //       .catch((error) => {
+  //         console.log(error);
+  //       })
+  //   }
+  // })
+
   return (
     <>
       <StyledWrapper>
@@ -13,7 +36,7 @@ function Detail() {
         </StyledBgWrapper>
         <StyledBookWrapper>
           <StyledBook>
-
+          <Info bookName={'사람을 좋아하는 헤드헌터'} author={'윤재홍'} publisher={'TALK SHOW'} count={4} date={'11월 17일'} state={true}/>
           </StyledBook>
         </StyledBookWrapper>
 
@@ -73,14 +96,14 @@ const StyledContentWrapper = styled.div`
 const StyledStarWrapper = styled.div`
   position: absolute;
   overflow: hidden;
-  right: -5%;
+  right: -15%;
   top: -20rem;
   
 `;
 
 const StyledStar = styled.img`
   object-fit: cover;
-  width: 95%;
+  width: 90%;
 `;
 
 
