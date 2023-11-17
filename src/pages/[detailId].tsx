@@ -6,7 +6,7 @@ import primary from 'assets/images/primary.png';
 import { useEffect } from 'react';
 import axios from 'axios';
 import Info from 'components/Info/Info';
-
+import PresentationList from '../components/List/PresentationList';
 
 interface Props {   //사용자가 선택한 책 정보 => 통신할 때 필요
   bookId: number;
@@ -41,6 +41,8 @@ function Detail() {
         </StyledBookWrapper>
 
         <StyledContentWrapper>
+          <PresentationList></PresentationList>
+
           <StyledGoormWrapper>
             <StyledGoorm src={primary} alt={"구름"} />
           </StyledGoormWrapper>
