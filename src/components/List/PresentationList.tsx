@@ -1,10 +1,7 @@
 import styled from "styled-components";
 import theme from '../../styles/theme';
 import addPost from "assets/icons/addPost.svg";
-import { useEffect, useRef, useState } from 'react';
-import { ChangeEvent, FormEvent, KeyboardEvent, MouseEvent} from 'react'
-import { Simulate } from 'react-dom/test-utils';
-import focus = Simulate.focus;
+import { useState } from 'react';
 import Modal from 'components/Modal/Modal';
 
 let presentList = [

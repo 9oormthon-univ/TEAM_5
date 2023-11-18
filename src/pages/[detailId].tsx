@@ -1,10 +1,7 @@
 import styled from 'styled-components';
-import theme from 'styles/theme';
 import detailDarkBg from 'assets/images/detailDarkBg.jpg';
 import detailStar from 'assets/icons/detailStar.svg';
 import primary from 'assets/images/primary.png';
-import { useEffect } from 'react';
-import axios from 'axios';
 import Info from 'components/Info/Info';
 import PresentationList from '../components/List/PresentationList';
 

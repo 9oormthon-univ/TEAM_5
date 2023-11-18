@@ -6,7 +6,6 @@ import Mypage from 'pages/Mypage';
 import Detail from 'pages/[detailId]';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Root from 'router/Root';
-import detailId from '../pages/[detailId]';
 
 function Router() {
   const router = createBrowserRouter([
