@@ -5,7 +5,6 @@ import temple from 'assets/images/temple.svg';
 import BookList from 'components/List/BookList';
 import Modal from 'components/Modal';
 import BookClubs from 'components/Modal/BookClubs';
-import { GOORM, Position } from 'constants/goorm';
 import media from 'constants/media';
 import useGetBookList from 'hooks/api/useGetBook';
 import useGetBookClub from 'hooks/api/useGetBookClub';
@@ -42,7 +41,7 @@ function Main() {
 
           <StyledTemple src={temple} alt="신전" />
 
-          <StyledGoormWrapper>
+          {/* <StyledGoormWrapper>
             {Position.map((item, index) => (
               <StyledGoorm key={index} top={item.top}>
                 {bookClubs?.clouds.map((cloud, index) => (
@@ -54,10 +53,10 @@ function Main() {
                 ))}
               </StyledGoorm>
             ))}
-          </StyledGoormWrapper>
+          </StyledGoormWrapper> */}
         </StyledItemWrapper>
       </StyledWrapper>
-      {/* <BookClubs /> */}
+      <BookClubs />
       {inputOpen && <Modal open={inputOpen} setShowModal={setInputOpen} />}
 
       <StyledBookListWrapper>
@@ -65,7 +64,7 @@ function Main() {
           <StyledStar src={mainStar} alt="별" loading="lazy" />
         </StyledStarWrapper>
         <StyledBookWrapper>
-          <StyledAgoraName>{} 아고라</StyledAgoraName>
+          <StyledAgoraName>슬희의 아고라</StyledAgoraName>
           <StyledBookList>
             {bookLists.map((book, index) => (
               <BookList

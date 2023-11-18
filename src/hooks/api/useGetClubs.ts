@@ -11,6 +11,7 @@ function useGetClubs() {
 
     setClubs(response);
     setIsLoading(false);
+    console.log(response)
   }
 
   useEffect(() => {
