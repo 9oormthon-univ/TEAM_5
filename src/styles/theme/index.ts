@@ -8,6 +8,7 @@ const theme = {
     navText: '#A98346',
     text: '#ADADAD',
     line: '#DFDDDD',
+    modal: '#D9D9D9',
   },
   fontWeight: {
     thin: 100,

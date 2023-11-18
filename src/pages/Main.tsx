@@ -2,11 +2,20 @@ import logo from 'assets/icons/logo.svg';
 import mainStar from 'assets/icons/mainStar.svg';
 import darkBg from 'assets/images/mainDarkBg.jpg';
 import temple from 'assets/images/temple.svg';
-import BookList from 'components/List/BookList';
+import media from 'constants/media';
+import useGetBookList from 'hooks/api/useGetBook';
+import useGetBookClub from 'hooks/api/useGetBookClub';
 import styled from 'styled-components';
 import theme from 'styles/theme';
 
 function Main() {
+  const { bookLists, isLoading } = useGetBookList();
+  const { bookClubs } = useGetBookClub({ bookClubId: 1 });
+
+  if (isLoading) {
+    return <div>로딩중</div>;
+  }
+
   return (
     <>
       <StyledWrapper>
@@ -21,6 +30,20 @@ function Main() {
           </StyledLogoWrapper>
 
           <StyledTemple src={temple} alt="신전" />
+
+          <StyledGoormWrapper>
+            {/* {Position.map((item, index) => (
+              <StyledGoorm key={index} top={item.top}>
+                {bookClubs?.clouds.map((cloud, index) => (
+                  <StyledGoormImg
+                    key={index}
+                    src={GOORM[cloud.id].img}
+                    alt="구름"
+                  />
+                ))}
+              </StyledGoorm>
+            ))} */}
+          </StyledGoormWrapper>
         </StyledItemWrapper>
       </StyledWrapper>
 
@@ -30,7 +53,7 @@ function Main() {
         </StyledStarWrapper>
         <StyledBookWrapper>
           <StyledAgoraName>무슨 무슨 아고라</StyledAgoraName>
-          <BookList />
+          {/* <BookList imgUrl={} title={} authors={bookLists?.authors} /> */}
         </StyledBookWrapper>
       </StyledBookListWrapper>
     </>
@@ -61,6 +84,7 @@ const StyledItemWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
+  height: 100%;
 `;
 
 const StyledLogoWrapper = styled.div`
@@ -116,4 +140,25 @@ const StyledAgoraName = styled.span`
   color: ${theme.color.title};
   font-size: 1.3rem;
   font-weight: ${theme.fontWeight.light};
+`;
+
+const StyledGoormWrapper = styled.div`
+  position: absolute;
+  display: flex;
+  flex-wrap: wrap;
+  z-index: 11;
+  width: 100%;
+  height: 100%;
+`;
+
+const StyledGoorm = styled.div<{ top: number }>`
+  position: relative;
+  top: ${(props) => props.top}px;
+`;
+
+const StyledGoormImg = styled.img`
+  ${media.mobile} {
+    width: 100px;
+    object-fit: cover;
+  }
 `;

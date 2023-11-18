@@ -39,7 +39,7 @@ const StyledWrapper = styled.nav`
   width: 100%;
   padding: 12px 0px;
   background-color: ${theme.color.darkBlack};
-  color: ${theme.color.navText};
+  color: ${theme.color.white};
 
   ${media.mobile} {
     font-size: 0.6rem;

@@ -1,9 +1,14 @@
+import night from 'assets/images/mainDarkBg.jpg';
+import light from 'assets/images/mainLightBg.jpg';
 import theme from 'styles/theme';
 
 export const THEME = [
-  { background: `${theme.color.darkBlack}`, color: `${theme.color.navText}` },
-  { background: `${theme.color.darkBlack}`, color: `${theme.color.white}` },
-  { background: ``, color: `${theme.color.white}` },
+  {
+    theme: '밤',
+    background: `${theme.color.darkBlack}`,
+    img: night,
+  },
+  { theme: '낮', background: ``, img: light },
 ];
 
 export const navItems = [

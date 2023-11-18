@@ -1,14 +1,10 @@
-import BookCard from "components/Card/BookCard";
-import styled from "styled-components";
+import BookCard from 'components/Card/BookCard';
+import styled from 'styled-components';
 
-function BookList() {
+function BookList({ imgUrl, title, authors }: BookList) {
   return (
     <StyledWrapper>
-      <BookCard
-        img="https://github.com/10-rolling/rollingPolling/assets/63100352/985a687b-3e9b-40bd-90a3-d0f1e815201e"
-        title="책 이름"
-        author="슬희"
-      />
+      <BookCard img={imgUrl} title={title} author={authors} />
     </StyledWrapper>
   );
 }
