@@ -12,7 +12,7 @@ import PresentationList from '../components/List/PresentationList';
 
 //{bookId, bookName} : Props
 function Detail() {
-
+  //아니면 useEffect 말고 메인페이지에서 아예 받아올까
   // useEffect(() => {
   //   async function getData() {
   //     await axios.get("/api/독서모임책정보")
@@ -24,6 +24,15 @@ function Detail() {
   //       })
   //   }
   // })
+  let bookInfo = [{
+    id: 45,
+    title: "한 번뿐인 인생은 어떻게 살아야 하는가",
+    authors: "박찬위",
+    count:4,
+    date:'11월 17일',
+    state:true
+  }
+  ]
 
   return (
     <>
@@ -38,7 +47,7 @@ function Detail() {
         </StyledBookWrapper>
 
         <StyledContentWrapper>
-          <PresentationList></PresentationList>
+          <PresentationList bookId={bookInfo[0].id}></PresentationList>
 
           <StyledGoormWrapper>
             <StyledGoorm src={primary} alt={"구름"} />

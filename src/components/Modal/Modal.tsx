@@ -1,11 +1,22 @@
 import styled from 'styled-components';
 import theme from '../../styles/theme';
 import { useEffect, useState } from 'react';
+import addBtn from 'assets/icons/addBtn.png';
+import axios from 'axios';
 interface Props {
   inputState : boolean
   RecommendState : boolean
+  bookId : number
 }
-function Modal({inputState, RecommendState} : Props) {
+
+let recommendList = [
+  {id : 1, content : '가장 기억에 남았던 부분은?'},
+  {id : 2, content : '책의 한줄평을 작성해 보기'},
+  {id : 3, content : '이 책을 누구에게 추천하고 싶은가요?'},
+]
+
+
+function Modal({inputState, RecommendState, bookId} : Props) {
   const [modalOpen, setModalOpen] = useState(false);
   const [InputOpen, setInputOpen] = useState(false);
   const [RecommendOpen, setRecommendOpen] = useState(false);
@@ -24,12 +35,33 @@ function Modal({inputState, RecommendState} : Props) {
     }
   },[InputOpen, RecommendOpen]);
 
+ let text : string;
+
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    text = e.target.value;
+  };
+
+  // http://15.165.101.70:8080/api/v1/question
+  function inputTest() {
+      axios.post('http://ec2-15-165-101-70.ap-northeast-2.compute.amazonaws.com/api/v1/question', {
+        "readingBookId" : bookId,
+        "content" : text,
+      })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+
+  }
+
   function InputModalContent() {
     return (
       <>
         <StyledBookTitle>책 이름</StyledBookTitle>
-        <StyledInput placeholder={"발제를 입력해주세요"}></StyledInput>
-        <StyledSubmitBtn>등록</StyledSubmitBtn>
+        <StyledInput placeholder={"발제를 입력해주세요"} onChange={(e) => onChange(e)}  value={text} ></StyledInput>
+        <StyledSubmitBtn onClick={() => {inputTest()}}>등록</StyledSubmitBtn>
       </>
     )
   }
@@ -37,7 +69,14 @@ function Modal({inputState, RecommendState} : Props) {
     return (
       <>
         <StyledBookTitle>추천 질문</StyledBookTitle>
-        <StyledInput placeholder={"발제를 입력해주세요"}></StyledInput>
+          <StyledListWrapper>
+            {recommendList.map((item, idx) => (
+              <div key={idx}>
+                <StyledList>{item.content}</StyledList>
+                <StyledAddBtn src={addBtn} alt={'발제 추가'} onClick={() => {console.log(item)}} ></StyledAddBtn>
+              </div>
+              ))}
+          </StyledListWrapper>
       </>
     )
   }
@@ -86,19 +125,27 @@ const StyledInput = styled.input`
   width: 80%;
   height: 60%;
   margin-top: 10%;
-  font: ${theme.color.black}
+  font: ${theme.color.black};
   outline: none;
   border: none;
+
   :focus {
     outline: none;
     border: none;
   }
 
   &::placeholder {
-    position: absolute;
+    /* position:absolute 스타일 제거 및 필요에 따라 top 및 left 값을 조정하세요 */
     display: inline-flex;
-    top: 5%;
-    left: 10%;
+    margin-top: 10%;
+    margin-left: 10%;
+  }
+
+  &::-ms-value {
+    /* position:absolute 스타일 제거 및 필요에 따라 top 및 left 값을 조정하세요 */
+    display: inline-flex;
+    margin-top: 10%;
+    margin-left: 10%;
   }
 `
 const StyledSubmitBtn = styled.button`
@@ -133,4 +180,25 @@ const StyledCloseBtn = styled.div`
   border-radius: 20px;
   right: 5%;
   top: 7%;
+`
+
+const StyledListWrapper = styled.div`
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  margin-top: 10%;
+  width: 100%;
+`
+const StyledList = styled.div`
+  display: inline-block;
+  color: black;
+  margin-top: 10%;
+  width: 80%;
+  margin-left: 7%;
+`
+const StyledAddBtn = styled.img`
+  display: inline-flex;
+  width: 5%;
+  height: 5%;
+  
 `

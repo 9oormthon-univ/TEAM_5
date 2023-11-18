@@ -1,30 +1,39 @@
 import styled from "styled-components";
 import theme from '../../styles/theme';
 import addPost from "assets/icons/addPost.svg";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Modal from 'components/Modal/Modal';
+import axios, { AxiosResponse } from 'axios';
 
-let presentList = [
-  {
-    id: 0,
-    title : "발제 1 블라블라",
-    comment : [{id : 0, content:" 제 의견 1 블라블라"}, {id: 1, content: "제 의견 2 블라블라"}]
-  } ,
-  {
-    id: 1,
-    title : "발제 2 블라블라",
-    comment : [{id : 0, content:" 제 의견 1 블라블라"}, {id: 1, content: "제 의견 2 블라블라"}]
-  } ,
-  {
-    id: 2,
-    title : "발제 3 블라블라",
-    comment : [{id : 0, content:" 제 의견 1 블라블라"}, {id: 1, content: "제 의견 2 블라블라"}]
-  } ,
-]
+// let presentList: any[] | AxiosResponse<any, any> = [];
+// let List: never[] = [];
 
-function PresentationList() {
+interface Props {   //사용자가 선택한 책 정보 => 통신할 때 필요
+  bookId: number;
+}
+
+function PresentationList({bookId}:Props) {
   const [inputOpen, setInputOpen] = useState(false);
   const [recommendOpen, setRecommendOpen] = useState(false);
+  const [presentList, setPresentList] = useState([]);
+  useEffect(() => {
+
+      axios.get('http://ec2-15-165-101-70.ap-northeast-2.compute.amazonaws.com/api/v1/question/list?readingBookId=' + bookId)
+        .then((response) => {
+          console.log(response.data.data[0].question);
+          let newPresent = [];
+          newPresent = response.data.data;
+          for(var i = 0; i < response.data.data.length; i++) {
+            newPresent[i] = response.data.data[i].question;
+          }
+          setPresentList(newPresent);
+
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+  });
 
 
   return (
@@ -32,7 +41,7 @@ function PresentationList() {
       <StyledTitleWrapper>
         <StyledTitle >발제</StyledTitle>
         <StyledBtnWrapper>
-          <StyledAddWrapper onClick={() => {setInputOpen(true); setRecommendOpen(false);} }>
+          <StyledAddWrapper onClick={() => {setInputOpen(true); setRecommendOpen(false);  console.log(presentList)} }>
             <StyledAdd  src={addPost} alt={"발제 추가"}></StyledAdd>
             <StyledAddText>발제 등록</StyledAddText>
           </StyledAddWrapper>
@@ -42,18 +51,20 @@ function PresentationList() {
           </StyledRecommendWrapper>
         </StyledBtnWrapper>
       </StyledTitleWrapper>
-      <Modal inputState={inputOpen} RecommendState={recommendOpen}/>
+      <Modal inputState={inputOpen} RecommendState={recommendOpen} bookId={bookId}/>
       <StyledLine />
       <StyledListWrapper>
-        {presentList.map((item:any, idx:number) => (
-          <StyledPresentation key={idx}>Q.{"\u00A0\u00A0"} {item.title}
-            {item.comment.map((obj:any, idx2:number) =>(
-              <StyledCommentWrapper key={idx2}>
-                <StyledComment>A {"\u00A0\u00A0"} {obj.content}</StyledComment>
-              </StyledCommentWrapper>
-            ))}
-          </StyledPresentation>
-        ))}
+
+        {/*{presentList && presentList.map((item:any, idx:number) => (*/}
+
+        {/*  <StyledPresentation key={idx}>Q.{"\u00A0\u00A0"} {item.question}*/}
+        {/*    {item.comment.map((obj:any, idx2:number) =>(*/}
+        {/*      <StyledCommentWrapper key={idx2}>*/}
+        {/*        <StyledComment>A {"\u00A0\u00A0"} {obj.answer}</StyledComment>*/}
+        {/*      </StyledCommentWrapper>*/}
+        {/*    ))}*/}
+        {/*  </StyledPresentation>*/}
+        {/*))}*/}
       </StyledListWrapper>
     </StyledWrapper>
   );
@@ -164,7 +175,3 @@ const StyledCommentWrapper = styled.div`
 const StyledComment = styled.div`
 
 `
-
-
-
-
