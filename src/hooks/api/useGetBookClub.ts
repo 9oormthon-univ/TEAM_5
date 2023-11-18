@@ -1,9 +1,9 @@
 import { instance } from 'libs/api/api';
 import { useEffect, useState } from 'react';
 
-interface Props {
-  bookClubId: number;
-}
+// interface Props {
+//   bookClubId: number;
+// }
 
 function useGetBookClub() {
   const [bookClubs, setBookClubs] = useState<Book>();

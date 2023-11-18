@@ -15,3 +15,8 @@ interface CloudsList {
   id: number;
   style: number;
 }
+
+interface AddBook {
+  bookId: number;
+  bookClubId: number;
+}

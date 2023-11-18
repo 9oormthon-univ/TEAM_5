@@ -1,22 +1,20 @@
 import GoormCard from 'components/Card/GoormCard';
 import { GOORM_ARRAY } from 'constants/goorm';
-import useGetGoorm from 'hooks/api/useGetGoorm';
-import { useState } from 'react';
 import styled from 'styled-components';
 import theme from 'styles/theme';
 
 function GoormMake() {
-  const [mode, setMode] = useState<string>('');
-  const { goorm } = useGetGoorm();
+  // const [mode, setMode] = useState<string>('');
+  // const { goorm } = useGetGoorm();
 
-  const darkModeHandler = () => {
-    setMode('밤');
-    console.log(mode);
-  };
+  // const darkModeHandler = () => {
+  //   setMode('밤');
+  //   console.log(mode);
+  // };
 
-  const brightModeHandler = () => {
-    setMode('낮');
-  };
+  // const brightModeHandler = () => {
+  //   setMode('낮');
+  // };
 
   return (
     <StyledWrapper>
@@ -28,7 +26,6 @@ function GoormMake() {
       <StyledHr />
 
       <StyledGoormWrapper>
-        
         {GOORM_ARRAY.map((item, index) => (
           <GoormCard key={index} name={item.name} img={item.img} />
         ))}
@@ -70,5 +67,3 @@ const StyledGoormWrapper = styled.div`
   margin: 3rem 0;
   gap: 10px;
 `;
-
-const StyledToggle = styled.button``;
