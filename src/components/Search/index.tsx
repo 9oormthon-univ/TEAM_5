@@ -9,6 +9,7 @@ function Search() {
   function onChange(e: ChangeEvent<HTMLInputElement>) {
     setSearchField(e.target.value);
   }
+  
   return (
     <StyledWrapper>
       <StyledInput
@@ -28,7 +29,12 @@ export default Search;
 const StyledWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  gap: 30px;
+  padding: 1rem;
 `;
 
 const StyledInput = styled.input`

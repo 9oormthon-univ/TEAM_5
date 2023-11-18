@@ -11,8 +11,6 @@ function useGetGoorm() {
 
     setGoorm(response);
     setIsLoading(false);
-
-    console.log(response);
   }
 
   useEffect(() => {

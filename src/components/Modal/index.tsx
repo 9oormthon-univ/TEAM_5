@@ -4,22 +4,31 @@ import theme from 'styles/theme';
 interface Props {
   open: boolean;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+  component: JSX.Element;
 }
 
-function Modal({ open, setShowModal }: Props) {
+function Modal({ open, setShowModal, component }: Props) {
   const onClickCloseBtn = () => {
     setShowModal(!open);
   };
 
   return (
-    <StyledModalContent open={open}>
-      <StyledCloseBtn onClick={onClickCloseBtn}>X</StyledCloseBtn>
-      
-    </StyledModalContent>
+    <StyledWrapper>
+      <StyledModalContent open={open}>
+        <StyledCloseBtn onClick={onClickCloseBtn}>X</StyledCloseBtn>
+        {component}
+      </StyledModalContent>
+    </StyledWrapper>
   );
 }
 
 export default Modal;
+
+const StyledWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 const StyledModalContent = styled.div<{ open: boolean }>`
   display: ${({ open }) => (open ? 'flex' : 'none')};

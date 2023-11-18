@@ -8,7 +8,6 @@ import theme from 'styles/theme';
 function GoormMake() {
   const [mode, setMode] = useState<string>('');
   const { goorm } = useGetGoorm();
-  console.log(goorm)
 
   const darkModeHandler = () => {
     setMode('밤');
@@ -23,8 +22,8 @@ function GoormMake() {
     <StyledWrapper>
       <StyledContentWrapper>
         <StyledInform>자유롭게 구름을 꾸며보세요!</StyledInform>
-        <StyledToggle onClick={brightModeHandler}>낮</StyledToggle>
-        <StyledToggle onClick={darkModeHandler}>밤</StyledToggle>
+        {/* <StyledToggle onClick={brightModeHandler}>낮</StyledToggle>
+        <StyledToggle onClick={darkModeHandler}>밤</StyledToggle> */}
       </StyledContentWrapper>
       <StyledHr />
 

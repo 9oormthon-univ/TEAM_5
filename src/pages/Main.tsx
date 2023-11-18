@@ -5,6 +5,8 @@ import temple from 'assets/images/temple.svg';
 import BookList from 'components/List/BookList';
 import Modal from 'components/Modal';
 import BookClubs from 'components/Modal/BookClubs';
+import Search from 'components/Search';
+import { GOORM, Position } from 'constants/goorm';
 import media from 'constants/media';
 import useGetBookList from 'hooks/api/useGetBook';
 import useGetBookClub from 'hooks/api/useGetBookClub';
@@ -14,6 +16,7 @@ import theme from 'styles/theme';
 
 function Main() {
   const [inputOpen, setInputOpen] = useState<boolean>(false);
+  const [modalClub, setModalClub] = useState<boolean>(false);
 
   const { bookLists, isLoading } = useGetBookList();
   const { bookClubs } = useGetBookClub();
@@ -26,9 +29,13 @@ function Main() {
     setInputOpen(!inputOpen);
   }
 
+  function onClickOpenClubModal() {
+    setModalClub(!modalClub);
+  }
+
   return (
     <>
-      <StyledWrapper onClick={() => onClickOpenModal()}>
+      <StyledWrapper>
         <StyledBgWrapper>
           <StyledBg src={darkBg} alt="밤 배경" loading="lazy" />
         </StyledBgWrapper>
@@ -36,12 +43,12 @@ function Main() {
         <StyledItemWrapper>
           <StyledLogoWrapper>
             <StyledLogo src={logo} alt="로고" />
-            <StyledSubTitle>무슨 무슨 아고라</StyledSubTitle>
+            <StyledSubTitle>슬희의 아고라</StyledSubTitle>
           </StyledLogoWrapper>
 
           <StyledTemple src={temple} alt="신전" />
 
-          {/* <StyledGoormWrapper>
+          <StyledGoormWrapper>
             {Position.map((item, index) => (
               <StyledGoorm key={index} top={item.top}>
                 {bookClubs?.clouds.map((cloud, index) => (
@@ -53,11 +60,25 @@ function Main() {
                 ))}
               </StyledGoorm>
             ))}
-          </StyledGoormWrapper> */}
+          </StyledGoormWrapper>
         </StyledItemWrapper>
       </StyledWrapper>
-      <BookClubs />
-      {inputOpen && <Modal open={inputOpen} setShowModal={setInputOpen} />}
+
+      {inputOpen && (
+        <Modal
+          open={inputOpen}
+          setShowModal={setInputOpen}
+          component={<Search />}
+        />
+      )}
+
+      {modalClub && (
+        <Modal
+          open={modalClub}
+          setShowModal={setModalClub}
+          component={<BookClubs />}
+        />
+      )}
 
       <StyledBookListWrapper>
         <StyledStarWrapper>
@@ -65,6 +86,13 @@ function Main() {
         </StyledStarWrapper>
         <StyledBookWrapper>
           <StyledAgoraName>슬희의 아고라</StyledAgoraName>
+
+          <StyledModalWrapper>
+            <button onClick={() => onClickOpenClubModal()}>
+              내 독서모임 보기
+            </button>
+            <button onClick={() => onClickOpenModal()}>검색하러가기</button>
+          </StyledModalWrapper>
           <StyledBookList>
             {bookLists.map((book, index) => (
               <BookList
@@ -194,4 +222,10 @@ const StyledGoormImg = styled.img`
     width: 100px;
     object-fit: cover;
   }
+`;
+
+const StyledModalWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 100px;
 `;
