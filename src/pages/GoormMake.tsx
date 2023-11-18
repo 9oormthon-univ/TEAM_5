@@ -9,6 +9,7 @@ function GoormMake() {
 
   const darkModeHandler = () => {
     setMode('밤');
+    console.log(mode);
   };
 
   const brightModeHandler = () => {

@@ -2,19 +2,16 @@ import logo from 'assets/icons/logo.svg';
 import mainStar from 'assets/icons/mainStar.svg';
 import darkBg from 'assets/images/mainDarkBg.jpg';
 import temple from 'assets/images/temple.svg';
-import media from 'constants/media';
-import useGetBookList from 'hooks/api/useGetBook';
-import useGetBookClub from 'hooks/api/useGetBookClub';
 import styled from 'styled-components';
 import theme from 'styles/theme';
 
 function Main() {
-  const { bookLists, isLoading } = useGetBookList();
-  const { bookClubs } = useGetBookClub({ bookClubId: 1 });
+  // const { bookLists, isLoading } = useGetBookList();
+  // const { bookClubs } = useGetBookClub({ bookClubId: 1 });
 
-  if (isLoading) {
-    return <div>로딩중</div>;
-  }
+  // if (isLoading) {
+  //   return <div>로딩중</div>;
+  // }
 
   return (
     <>
@@ -151,14 +148,14 @@ const StyledGoormWrapper = styled.div`
   height: 100%;
 `;
 
-const StyledGoorm = styled.div<{ top: number }>`
-  position: relative;
-  top: ${(props) => props.top}px;
-`;
+// const StyledGoorm = styled.div<{ top: number }>`
+//   position: relative;
+//   top: ${(props) => props.top}px;
+// `;
 
-const StyledGoormImg = styled.img`
-  ${media.mobile} {
-    width: 100px;
-    object-fit: cover;
-  }
-`;
+// const StyledGoormImg = styled.img`
+//   ${media.mobile} {
+//     width: 100px;
+//     object-fit: cover;
+//   }
+// `;
