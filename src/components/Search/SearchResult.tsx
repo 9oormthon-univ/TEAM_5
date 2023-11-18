@@ -10,8 +10,8 @@ interface Props {
 
 function SearchResult({ searchField }: Props) {
   const [searchItems, setSearchItems] = useState<BookList[]>([]);
-  const [bookId, setBookId] = useState<number>();
-  const [bookClubId, setBookClubId] = useState<number>();
+  // const [bookId, setBookId] = useState<number>();
+  // const [bookClubId, setBookClubId] = useState<number>();
 
   useEffect(() => {
     const api = async () => {
@@ -23,20 +23,18 @@ function SearchResult({ searchField }: Props) {
     api();
   }, [searchField]);
 
-
-
-  function onSubmit() {
-    instance
-      .post<{}, AddBook>(`/readingBooks/save`, {
-        bookId: bookId,
-        bookClubId: bookClubId,
-      })
-      .then((res) => {
-        console.log(res.bookId);
-        console.log("슬희")
-      })
-      .catch((error) => console.log(error));
-  }
+  // function onSubmit() {
+  //   instance
+  //     .post<{}, AddBook>(`/readingBooks/save`, {
+  //       bookId: bookId,
+  //       bookClubId: bookClubId,
+  //     })
+  //     .then((res) => {
+  //       console.log(res.bookId);
+  //       console.log('슬희');
+  //     })
+  //     .catch((error) => console.log(error));
+  // }
 
   return (
     <StyledWrapper>
@@ -49,13 +47,11 @@ function SearchResult({ searchField }: Props) {
               <span>{item.title}</span>
               <p>{item.authors}</p>
             </StyledContentWrapper>
-             <div onClick={onSubmit}>
-        <Button content="추가" background="#061028" color="white" />
-      </div>
+
+            <Button content="추가" background="#061028" color="white" />
           </StyledData>
         ))}
       </StyledDataWrapper>
-     
     </StyledWrapper>
   );
 }
