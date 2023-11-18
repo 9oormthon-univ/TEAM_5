@@ -11,7 +11,7 @@ function useGetBookClub() {
 
   async function getBookById() {
     setIsLoading(true);
-    const response = await instance.get<{}, Book>(`/bookClubs`);
+    const response = await instance.get<{}, Book>(`/bookClubs/1`);
 
     setBookClubs(response);
     setIsLoading(false);

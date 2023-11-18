@@ -11,16 +11,16 @@ interface Props {
 function BookCard({ img, title, author }: Props) {
   return (
     <Link to="/">
-       <StyledWrapper>
-      <StyledImgWrapper>
-        <StyledImg src={img} alt="책 표지" />
-      </StyledImgWrapper>
-      <StyledContentWrapper>
-        <StyledTitle>{title}</StyledTitle>
-        <StyledAuthor>{author}</StyledAuthor>
-      </StyledContentWrapper>
-    </StyledWrapper></Link>
- 
+      <StyledWrapper>
+        <StyledImgWrapper>
+          <StyledImg src={img} alt="책 표지" />
+        </StyledImgWrapper>
+        <StyledContentWrapper>
+          <StyledTitle>{title}</StyledTitle>
+          <StyledAuthor>{author}</StyledAuthor>
+        </StyledContentWrapper>
+      </StyledWrapper>
+    </Link>
   );
 }
 
@@ -39,6 +39,7 @@ const StyledImgWrapper = styled.div`
 
 const StyledImg = styled.img`
   width: 100%;
+  object-fit: cover;
 `;
 
 const StyledContentWrapper = styled.div`
@@ -47,6 +48,7 @@ const StyledContentWrapper = styled.div`
   align-items: center;
   margin-top: 0.6rem;
   gap: 2px;
+  width: 16rem;
 `;
 
 const StyledTitle = styled.span`
@@ -55,6 +57,6 @@ const StyledTitle = styled.span`
 `;
 
 const StyledAuthor = styled.p`
-
+  margin-top: 5px;
   font-weight: ${theme.fontWeight.light};
 `;

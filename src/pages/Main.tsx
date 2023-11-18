@@ -4,6 +4,8 @@ import darkBg from 'assets/images/mainDarkBg.jpg';
 import temple from 'assets/images/temple.svg';
 import BookList from 'components/List/BookList';
 import Modal from 'components/Modal';
+import BookClubs from 'components/Modal/BookClubs';
+import { GOORM, Position } from 'constants/goorm';
 import media from 'constants/media';
 import useGetBookList from 'hooks/api/useGetBook';
 import useGetBookClub from 'hooks/api/useGetBookClub';
@@ -40,7 +42,7 @@ function Main() {
 
           <StyledTemple src={temple} alt="신전" />
 
-          {/* <StyledGoormWrapper>
+          <StyledGoormWrapper>
             {Position.map((item, index) => (
               <StyledGoorm key={index} top={item.top}>
                 {bookClubs?.clouds.map((cloud, index) => (
@@ -52,10 +54,10 @@ function Main() {
                 ))}
               </StyledGoorm>
             ))}
-          </StyledGoormWrapper> */}
+          </StyledGoormWrapper>
         </StyledItemWrapper>
       </StyledWrapper>
-
+      {/* <BookClubs /> */}
       {inputOpen && <Modal open={inputOpen} setShowModal={setInputOpen} />}
 
       <StyledBookListWrapper>
@@ -63,16 +65,17 @@ function Main() {
           <StyledStar src={mainStar} alt="별" loading="lazy" />
         </StyledStarWrapper>
         <StyledBookWrapper>
-          <StyledAgoraName>무슨 무슨 아고라</StyledAgoraName>
-
-          {bookLists.map((book, index) => (
-            <BookList
-              key={index}
-              img={book.imgUrl}
-              title={book.title}
-              author={book.authors}
-            />
-          ))}
+          <StyledAgoraName>{} 아고라</StyledAgoraName>
+          <StyledBookList>
+            {bookLists.map((book, index) => (
+              <BookList
+                key={index}
+                img={book.imgUrl}
+                title={book.title}
+                author={book.authors}
+              />
+            ))}
+          </StyledBookList>
         </StyledBookWrapper>
       </StyledBookListWrapper>
     </>
@@ -159,6 +162,18 @@ const StyledAgoraName = styled.span`
   color: ${theme.color.title};
   font-size: 1.3rem;
   font-weight: ${theme.fontWeight.light};
+`;
+
+const StyledBookList = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  width: 100%;
+  height: 80%;
+  margin: 0 auto;
+  gap: 30px;
 `;
 
 const StyledGoormWrapper = styled.div`

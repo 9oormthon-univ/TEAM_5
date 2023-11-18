@@ -1,4 +1,5 @@
 interface Book {
+  title: string;
   books: BookList[];
   clouds: CloudsList[];
 }
