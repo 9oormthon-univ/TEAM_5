@@ -21,10 +21,18 @@ function Nav() {
         </Link>
       ))}
 
-      <StyledInformWrapper>
-        Login
-        <StyledProfile src={profile} alt="프로필" />
-      </StyledInformWrapper>
+      <Link to="/Mypage">
+        <StyledInformWrapper>
+          아고라고라 님
+          <StyledProfile src={profile} alt="프로필" />
+        </StyledInformWrapper>
+      </Link>
+
+
+      {/*<StyledInformWrapper>*/}
+      {/*  Login*/}
+      {/*  <StyledProfile src={profile} alt="프로필" />*/}
+      {/*</StyledInformWrapper>*/}
     </StyledWrapper>
   );
 }
