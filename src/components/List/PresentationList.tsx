@@ -22,9 +22,6 @@ let presentList = [
   } ,
 ]
 
-let modalName;
-
-
 function PresentationList() {
   const [inputOpen, setInputOpen] = useState(false);
   const [recommendOpen, setRecommendOpen] = useState(false);

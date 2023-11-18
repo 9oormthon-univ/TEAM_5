@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import theme from '../../styles/theme';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 interface Props {
   inputState : boolean
   RecommendState : boolean

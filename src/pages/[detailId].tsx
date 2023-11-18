@@ -5,10 +5,10 @@ import primary from 'assets/images/primary.png';
 import Info from 'components/Info/Info';
 import PresentationList from '../components/List/PresentationList';
 
-interface Props {   //사용자가 선택한 책 정보 => 통신할 때 필요
-  bookId: number;
-  bookName: string;
-}
+// interface Props {   //사용자가 선택한 책 정보 => 통신할 때 필요
+//   bookId: number;
+//   bookName: string;
+// }
 
 //{bookId, bookName} : Props
 function Detail() {
