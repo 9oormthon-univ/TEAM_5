@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import theme from 'styles/theme';
 
@@ -9,16 +10,17 @@ interface Props {
 
 function BookCard({ img, title, author }: Props) {
   return (
-    <StyledWrapper>
+    <Link to="/">
+       <StyledWrapper>
       <StyledImgWrapper>
         <StyledImg src={img} alt="책 표지" />
       </StyledImgWrapper>
-
       <StyledContentWrapper>
         <StyledTitle>{title}</StyledTitle>
         <StyledAuthor>{author}</StyledAuthor>
       </StyledContentWrapper>
-    </StyledWrapper>
+    </StyledWrapper></Link>
+ 
   );
 }
 
@@ -53,5 +55,6 @@ const StyledTitle = styled.span`
 `;
 
 const StyledAuthor = styled.p`
+
   font-weight: ${theme.fontWeight.light};
 `;
