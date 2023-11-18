@@ -1,3 +1,5 @@
+import blurGoorm from 'assets/icons/blurGoorm.svg';
+import brBlackBlurGoorm from 'assets/icons/brBlackBlurGoorm.svg';
 import logo from 'assets/icons/logo.svg';
 import mainStar from 'assets/icons/mainStar.svg';
 import darkBg from 'assets/images/mainDarkBg.jpg';
@@ -6,14 +8,13 @@ import BookList from 'components/List/BookList';
 import Modal from 'components/Modal';
 import BookClubs from 'components/Modal/BookClubs';
 import Search from 'components/Search';
-import { GOORM, Position } from 'constants/goorm';
+import { GOORM } from 'constants/goorm';
 import media from 'constants/media';
 import useGetBookList from 'hooks/api/useGetBook';
 import useGetBookClub from 'hooks/api/useGetBookClub';
 import { useState } from 'react';
 import styled from 'styled-components';
 import theme from 'styles/theme';
-
 function Main() {
   const [inputOpen, setInputOpen] = useState<boolean>(false);
   const [modalClub, setModalClub] = useState<boolean>(false);
@@ -43,23 +44,28 @@ function Main() {
         <StyledItemWrapper>
           <StyledLogoWrapper>
             <StyledLogo src={logo} alt="로고" />
-            <StyledSubTitle>슬희의 아고라</StyledSubTitle>
+            <StyledSubTitle>5팀의 아고라</StyledSubTitle>
           </StyledLogoWrapper>
 
           <StyledTemple src={temple} alt="신전" />
 
           <StyledGoormWrapper>
-            {Position.map((item, index) => (
-              <StyledGoorm key={index} top={item.top}>
-                {bookClubs?.clouds.map((cloud, index) => (
-                  <StyledGoormImg
-                    key={index}
-                    src={GOORM[cloud.id].img}
-                    alt="구름"
-                  />
-                ))}
-              </StyledGoorm>
+            {bookClubs?.clouds.map((cloud, index) => (
+              <StyledGoormImg
+                key={index}
+                src={GOORM[cloud.id].img}
+                alt="구름"
+              />
             ))}
+
+            <StyledA src={brBlackBlurGoorm} alt="구름" />
+
+            <StyledB src={blurGoorm} alt="구름" />
+
+            <StyledC src={blurGoorm} alt="구름" />
+            {/* {Position.map((item, index) => (
+              <StyledGoorm key={index} top={item.top}></StyledGoorm>
+            ))} */}
           </StyledGoormWrapper>
         </StyledItemWrapper>
       </StyledWrapper>
@@ -85,7 +91,7 @@ function Main() {
           <StyledStar src={mainStar} alt="별" loading="lazy" />
         </StyledStarWrapper>
         <StyledBookWrapper>
-          <StyledAgoraName>슬희의 아고라</StyledAgoraName>
+          <StyledAgoraName>5팀의 아고라</StyledAgoraName>
 
           <StyledModalWrapper>
             <button onClick={() => onClickOpenClubModal()}>
@@ -210,7 +216,29 @@ const StyledGoormWrapper = styled.div`
   z-index: 11;
   width: 100%;
   height: 100%;
+  gap: 150px;
+  top: -80px;
 `;
+
+const StyledA = styled.img`
+  position: absolute;
+  top: 130px;
+  left: 90px;
+`;
+
+const StyledB = styled.img`
+  position: absolute;
+  top: 80px;
+  right: 30px;
+`;
+
+const StyledC = styled.img`
+  position: absolute;
+  top: 250px;
+  right: 400px;
+  
+`;
+
 
 const StyledGoorm = styled.div<{ top: number }>`
   position: relative;

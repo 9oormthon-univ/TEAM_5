@@ -33,15 +33,15 @@ const StyledWrapper = styled.div`
 const StyledModalContent = styled.div<{ open: boolean }>`
   display: ${({ open }) => (open ? 'flex' : 'none')};
   background-color: ${theme.color.white};
-  width: 40rem;
+  width: 42rem;
   height: 30rem;
   border-radius: 30px;
   flex-shrink: 0;
-  padding: 15px;
+  padding: 0 15px;
   z-index: 20;
   position: absolute;
   display: flex;
-  margin-top: -13%;
+ 
 `;
 
 const StyledCloseBtn = styled.div`

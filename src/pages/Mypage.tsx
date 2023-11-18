@@ -66,7 +66,7 @@ const StyledUserName = styled.div`
   text-align: center;
   font-size: 20px;
   font-style: normal;
-  font-weight: ${theme.fontWeight.medium}
+  font-weight: ${theme.fontWeight.medium};
   line-height: 150%; /* 36px */
 `
 const StyledLine = styled.hr`
