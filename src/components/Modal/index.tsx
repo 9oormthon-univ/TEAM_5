@@ -1,73 +1,28 @@
-import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import theme from 'styles/theme';
 
 interface Props {
-  inputState: boolean;
-  RecommendState: boolean;
+  open: boolean;
+  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function Modal({ inputState, RecommendState }: Props) {
-  const [modalOpen, setModalOpen] = useState<boolean>(false);
-  const [InputOpen, setInputOpen] = useState<boolean>(false);
-  const [RecommendOpen, setRecommendOpen] = useState<boolean>(false);
-
-  useEffect(() => {
-    setInputOpen(inputState);
-    setRecommendOpen(RecommendState);
-  }, [inputState, RecommendState]);
-
-  useEffect(() => {
-    if (InputOpen === true || RecommendOpen === true) {
-      setModalOpen(true);
-    } else {
-      setModalOpen(false);
-    }
-  }, [InputOpen, RecommendOpen]);
-
-  function InputModalContent() {
-    return (
-      <>
-        <StyledBookTitle>책 이름</StyledBookTitle>
-        <StyledInput placeholder={'발제를 입력해주세요'}></StyledInput>
-        <StyledSubmitBtn>등록</StyledSubmitBtn>
-      </>
-    );
-  }
-
-  function RecommendModalContent() {
-    return (
-      <>
-        <StyledBookTitle>추천 질문</StyledBookTitle>
-        <StyledInput placeholder={'발제를 입력해주세요'}></StyledInput>
-      </>
-    );
-  }
+function Modal({ open, setShowModal }: Props) {
+  const onClickCloseBtn = () => {
+    setShowModal(!open);
+  };
 
   return (
-    <>
-      {modalOpen ? (
-        <StyledModalContent>
-          <StyledCloseBtn
-            onClick={() =>
-              InputOpen ? setInputOpen(false) : setRecommendOpen(false)
-            }
-          >
-            X
-          </StyledCloseBtn>
-          {InputOpen ? <InputModalContent /> : <></>}
-          {RecommendOpen ? <RecommendModalContent /> : <></>}
-        </StyledModalContent>
-      ) : (
-        <></>
-      )}
-    </>
+    <StyledModalContent open={open}>
+      <StyledCloseBtn onClick={onClickCloseBtn}>X</StyledCloseBtn>
+      
+    </StyledModalContent>
   );
 }
 
 export default Modal;
 
-const StyledModalContent = styled.div`
+const StyledModalContent = styled.div<{ open: boolean }>`
+  display: ${({ open }) => (open ? 'flex' : 'none')};
   background-color: ${theme.color.white};
   width: 40rem;
   height: 30rem;

@@ -1,11 +1,14 @@
 import GoormCard from 'components/Card/GoormCard';
 import { GOORM_ARRAY } from 'constants/goorm';
+import useGetGoorm from 'hooks/api/useGetGoorm';
 import { useState } from 'react';
 import styled from 'styled-components';
 import theme from 'styles/theme';
 
 function GoormMake() {
   const [mode, setMode] = useState<string>('');
+  const { goorm } = useGetGoorm();
+  console.log(goorm)
 
   const darkModeHandler = () => {
     setMode('밤');
@@ -26,6 +29,7 @@ function GoormMake() {
       <StyledHr />
 
       <StyledGoormWrapper>
+        
         {GOORM_ARRAY.map((item, index) => (
           <GoormCard key={index} name={item.name} img={item.img} />
         ))}

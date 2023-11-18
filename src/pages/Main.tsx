@@ -2,20 +2,33 @@ import logo from 'assets/icons/logo.svg';
 import mainStar from 'assets/icons/mainStar.svg';
 import darkBg from 'assets/images/mainDarkBg.jpg';
 import temple from 'assets/images/temple.svg';
+import BookList from 'components/List/BookList';
+import Modal from 'components/Modal';
+import BookClubs from 'components/Modal/BookClubs';
+import media from 'constants/media';
+import useGetBookList from 'hooks/api/useGetBook';
+import useGetBookClub from 'hooks/api/useGetBookClub';
+import { useState } from 'react';
 import styled from 'styled-components';
 import theme from 'styles/theme';
 
 function Main() {
-  // const { bookLists, isLoading } = useGetBookList();
-  // const { bookClubs } = useGetBookClub({ bookClubId: 1 });
+  const [inputOpen, setInputOpen] = useState<boolean>(false);
 
-  // if (isLoading) {
-  //   return <div>로딩중</div>;
-  // }
+  const { bookLists, isLoading } = useGetBookList();
+  const { bookClubs } = useGetBookClub();
+
+  if (isLoading) {
+    return <div>로딩중</div>;
+  }
+
+  function onClickOpenModal() {
+    setInputOpen(!inputOpen);
+  }
 
   return (
     <>
-      <StyledWrapper>
+      <StyledWrapper onClick={() => onClickOpenModal()}>
         <StyledBgWrapper>
           <StyledBg src={darkBg} alt="밤 배경" loading="lazy" />
         </StyledBgWrapper>
@@ -28,8 +41,8 @@ function Main() {
 
           <StyledTemple src={temple} alt="신전" />
 
-          <StyledGoormWrapper>
-            {/* {Position.map((item, index) => (
+          {/* <StyledGoormWrapper>
+            {Position.map((item, index) => (
               <StyledGoorm key={index} top={item.top}>
                 {bookClubs?.clouds.map((cloud, index) => (
                   <StyledGoormImg
@@ -39,18 +52,29 @@ function Main() {
                   />
                 ))}
               </StyledGoorm>
-            ))} */}
-          </StyledGoormWrapper>
+            ))}
+          </StyledGoormWrapper> */}
         </StyledItemWrapper>
       </StyledWrapper>
+      <BookClubs />
+      {inputOpen && <Modal open={inputOpen} setShowModal={setInputOpen} />}
 
       <StyledBookListWrapper>
         <StyledStarWrapper>
           <StyledStar src={mainStar} alt="별" loading="lazy" />
         </StyledStarWrapper>
         <StyledBookWrapper>
-          <StyledAgoraName>무슨 무슨 아고라</StyledAgoraName>
-          {/* <BookList imgUrl={} title={} authors={bookLists?.authors} /> */}
+          <StyledAgoraName>슬희의 아고라</StyledAgoraName>
+          <StyledBookList>
+            {bookLists.map((book, index) => (
+              <BookList
+                key={index}
+                img={book.imgUrl}
+                title={book.title}
+                author={book.authors}
+              />
+            ))}
+          </StyledBookList>
         </StyledBookWrapper>
       </StyledBookListWrapper>
     </>
@@ -139,6 +163,18 @@ const StyledAgoraName = styled.span`
   font-weight: ${theme.fontWeight.light};
 `;
 
+const StyledBookList = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  width: 100%;
+  height: 80%;
+  margin: 0 auto;
+  gap: 30px;
+`;
+
 const StyledGoormWrapper = styled.div`
   position: absolute;
   display: flex;
@@ -148,14 +184,14 @@ const StyledGoormWrapper = styled.div`
   height: 100%;
 `;
 
-// const StyledGoorm = styled.div<{ top: number }>`
-//   position: relative;
-//   top: ${(props) => props.top}px;
-// `;
+const StyledGoorm = styled.div<{ top: number }>`
+  position: relative;
+  top: ${(props) => props.top}px;
+`;
 
-// const StyledGoormImg = styled.img`
-//   ${media.mobile} {
-//     width: 100px;
-//     object-fit: cover;
-//   }
-// `;
+const StyledGoormImg = styled.img`
+  ${media.mobile} {
+    width: 100px;
+    object-fit: cover;
+  }
+`;

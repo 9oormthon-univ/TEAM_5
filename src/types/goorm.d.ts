@@ -3,3 +3,8 @@ interface Goorm {
   bookClubId: number;
   style: string;
 }
+
+interface GoormById {
+  id: number;
+  style: string;
+}
