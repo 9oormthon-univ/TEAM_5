@@ -74,9 +74,9 @@ const StyledInfoWrapper = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   gap: 25px;
-  left: 25%;
+  right: 3%;
   margin-top: 7%;
-  width: 100%;
+  width: 20%;
 `
 const StyledInfo = styled.div`
   width: 100%;
@@ -89,7 +89,7 @@ const StyledInfoImgWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   flex-wrap: wrap;
-  left: 23%;
+  right: 5%;
   margin-top: 7%;
   gap: 10px;
 `

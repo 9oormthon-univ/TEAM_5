@@ -1,6 +1,11 @@
 import styled from "styled-components";
 import theme from '../../styles/theme';
 import addPost from "assets/icons/addPost.svg";
+import { useEffect, useRef, useState } from 'react';
+import { ChangeEvent, FormEvent, KeyboardEvent, MouseEvent} from 'react'
+import { Simulate } from 'react-dom/test-utils';
+import focus = Simulate.focus;
+import Modal from 'components/Modal/Modal';
 
 let presentList = [
   {
@@ -20,23 +25,30 @@ let presentList = [
   } ,
 ]
 
+let modalName;
+
+
 function PresentationList() {
+  const [inputOpen, setInputOpen] = useState(false);
+  const [recommendOpen, setRecommendOpen] = useState(false);
+
 
   return (
     <StyledWrapper>
       <StyledTitleWrapper>
-        <StyledTitle>발제</StyledTitle>
+        <StyledTitle >발제</StyledTitle>
         <StyledBtnWrapper>
-          <StyledAddWrapper>
-            <StyledAdd src={addPost} alt={"발제 추가"}></StyledAdd>
+          <StyledAddWrapper onClick={() => {setInputOpen(true); setRecommendOpen(false);} }>
+            <StyledAdd  src={addPost} alt={"발제 추가"}></StyledAdd>
             <StyledAddText>발제 등록</StyledAddText>
           </StyledAddWrapper>
-          <StyledRecommendWrapper>
+          <StyledRecommendWrapper onClick={() => {setRecommendOpen(true); setInputOpen(false)}}>
             <StyledRecommend src={addPost} alt={"발제 추천"}></StyledRecommend>
             <StyledRecommendText>추천 질문</StyledRecommendText>
           </StyledRecommendWrapper>
         </StyledBtnWrapper>
       </StyledTitleWrapper>
+      <Modal inputState={inputOpen} RecommendState={recommendOpen}/>
       <StyledLine />
       <StyledListWrapper>
         {presentList.map((item:any, idx:number) => (
@@ -62,6 +74,8 @@ const StyledWrapper = styled.div`
   width: 100%;
   margin-left: 3%;
   top: 0;
+  left: 5%;
+  width: 90%;
 `;
 
 const StyledTitleWrapper = styled.div`
@@ -89,8 +103,11 @@ const StyledBtnWrapper =styled.div`
 `
 const StyledAddWrapper = styled.div`
   width: 100%;
+  height: 100%;
+  z-index: 20;
   display: flex;
   flex-direction: row;
+  cursor: pointer;
 `
 const StyledAdd= styled.img`
   position: relative;
@@ -102,14 +119,18 @@ const StyledAddText = styled.div`
 `
 const StyledRecommendWrapper = styled.div`
   width: 100%;
+  height: 100%;
+  z-index: 20;
   display: flex;
   flex-direction: row;
+  cursor: pointer;
+
 `
 const StyledRecommend = styled.img`
   position: relative;
   width: 30%;
 `
-const StyledRecommendText = styled.text`
+const StyledRecommendText = styled.div`
   width: 100%;
   margin-top: 5%;
 `
@@ -149,3 +170,7 @@ const StyledCommentWrapper = styled.div`
 const StyledComment = styled.div`
 
 `
+
+
+
+

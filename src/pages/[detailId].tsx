@@ -60,15 +60,14 @@ export default Detail;
 
 const StyledWrapper = styled.main`
   width: 100%;
-  overflow: hidden;
-  
+
 `;
 
 const StyledBgWrapper = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  
 `;
 
 const StyledBg = styled.img`
@@ -80,11 +79,12 @@ const StyledBookWrapper = styled.div`
   position: relative;
   display: block;
   height: 317px;    //content 넣기 전 임시
-  width: 100%;
+  width: 90%;
+  
 `
 
 const StyledBook = styled.div`
-  
+ 
 `
 
 const StyledContentWrapper = styled.div`
@@ -92,20 +92,20 @@ const StyledContentWrapper = styled.div`
   width: 100%;
   height: 100%;
   display: inline-block;
-  overflow: hidden;
 `;
 
 const StyledStarWrapper = styled.div`
   position: absolute;
-  overflow: hidden;
-  right: -15%;
+  right: 0;
   top: -20rem;
-  
+  overflow-x: hidden;
+  overflow-y: visible;
 `;
 
 const StyledStar = styled.img`
   object-fit: cover;
-  width: 90%;
+  width: 100%;
+
 `;
 
 
