@@ -27,6 +27,7 @@ const StyledWrapper = styled.div`
   display: flex;
   flex-direction: column;
   color: ${theme.color.darkBlack};
+  padding: 3rem 1rem;
 `;
 
 const StyledTitle = styled.span`

@@ -15,6 +15,7 @@ import useGetBookClub from 'hooks/api/useGetBookClub';
 import { useState } from 'react';
 import styled from 'styled-components';
 import theme from 'styles/theme';
+
 function Main() {
   const [inputOpen, setInputOpen] = useState<boolean>(false);
   const [modalClub, setModalClub] = useState<boolean>(false);
@@ -236,14 +237,12 @@ const StyledC = styled.img`
   position: absolute;
   top: 250px;
   right: 400px;
-  
 `;
 
-
-const StyledGoorm = styled.div<{ top: number }>`
-  position: relative;
-  top: ${(props) => props.top}px;
-`;
+// const StyledGoorm = styled.div<{ top: number }>`
+//   position: relative;
+//   top: ${(props) => props.top}px;
+// `;
 
 const StyledGoormImg = styled.img`
   ${media.mobile} {

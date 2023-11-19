@@ -10,7 +10,7 @@ interface Props {
 
 function BookCard({ img, title, author }: Props) {
   return (
-    <Link to="/">
+    <Link to="/roomTest">
       <StyledWrapper>
         <StyledImgWrapper>
           <StyledImg src={img} alt="책 표지" />

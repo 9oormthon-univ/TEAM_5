@@ -1,5 +1,5 @@
-import axios, { AxiosResponse, AxiosError } from "axios";
-import { API_BASE_URL } from "constants/common";
+import axios, { AxiosError, AxiosResponse } from 'axios';
+import { API_BASE_URL } from 'constants/common';
 
 export const instance = axios.create({
   baseURL: API_BASE_URL,
